@@ -1,20 +1,24 @@
 'use client'
 
 import { useEffect } from 'react'
+import { z } from 'zod'
 
-type UserType = {
-    id: number;
-    firstName: string;
-    lastName: string;
-    age: number;
-}
+const UserSchema = z.object({
+    id: z.number(),
+    firstName: z.string(),
+    lastName: z.string(),
+    age: z.number(),
+})
+
+type UserType = z.infer<typeof UserSchema>
 
 const User = () => {
     useEffect(() => {
         const getUser = async () => {
             const response = await fetch('http://localhost:3000/api')
             const user: UserType = await response.json()
-            console.log(user.firstName)
+            const validatedUser = UserSchema.parse(user)
+            console.log(validatedUser.firstName)
         }
 
         getUser().then(r => console.log('User fetched'))
