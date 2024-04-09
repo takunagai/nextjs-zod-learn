@@ -1,7 +1,7 @@
 export async function GET() {
     const user = {
         id: 1,
-        firstName: 'John',
+        firstname: 'John',
         lastName: 'Doe',
         age: 30,
     }
