@@ -21,7 +21,7 @@ const User = () => {
             console.log(validatedUser.firstName)
         }
 
-        getUser().then(r => console.log('User fetched'))
+        getUser().then(() => console.log('User fetched'))
     }, [])
 
     return (
